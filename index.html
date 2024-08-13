@@ -20,6 +20,15 @@
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+         /* Media query per dispositivi mobili */
+        @media (max-width: 600px) {
+        .container {
+            padding: 10px; /* Riduci il padding laterale */
+        }
+        body {
+            padding: 10px; /* Riduci il padding generale del body */
+        }
+    }
         h1 {
             text-align: center;
             color: #1e40af;
@@ -53,6 +62,7 @@
             padding: 8px;
             border-radius: 5px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
         }
         .role-badge {
             margin-left: auto;
@@ -187,7 +197,7 @@
                 
                 const roleTitle = document.createElement('div');
                 roleTitle.className = 'role-title';
-                roleTitle.textContent = role.charAt(0).toUpperCase() + role.slice(1) + 'i';
+                roleTitle.textContent = role.charAt(0).toUpperCase() + role.slice(1);
                 roleSection.appendChild(roleTitle);
 
                 players.filter(player => player.role === role).forEach(player => {
