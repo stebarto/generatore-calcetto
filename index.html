@@ -132,7 +132,7 @@
     <div class="container">
         <h1>⚽ Generatore Squadre Calcetto</h1>
         <div class="player-selection">
-            <h2>👥 Seleziona i Giocatori (<span id="selectedCount">0</span>/10)</h2>
+            <h2>Seleziona i Giocatori (<span id="selectedCount">0</span>/10)</h2>
             <div id="playerList" class="player-list"></div>
         </div>
         <div class="button-container">
@@ -160,18 +160,18 @@
 
     <script>
         const players = [
-            { name: "Stefano B. (Bartu)", keeper: 3, defense: 5, attack: 7, passes: 7, shot: 7, fitness: 6.5, willingness: 7, role: "attaccante" },
-            { name: "Alessandro C. (Calde)", keeper: 5, defense: 6, attack: 8, passes: 8, shot: 9, fitness: 7.5, willingness: 7, role: "attaccante" },
-            { name: "Andrea G.", keeper: 4, defense: 6, attack: 5, passes: 6, shot: 6, fitness: 6, willingness: 6.5, role: "centrocampista" },
-            { name: "Giorgio", keeper: 5, defense: 6.5, attack: 6, passes: 6, shot: 6.5, fitness: 6.5, willingness: 7, role: "difensore" },
-            { name: "Carmine", keeper: 4, defense: 6, attack: 5.5, passes: 5, shot: 6, fitness: 6, willingness: 6.5, role: "difensore" },
-            { name: "Gianmarco (Gian)", keeper: 3, defense: 5, attack: 7.5, passes: 7, shot: 7.5, fitness: 6.5, willingness: 7, role: "attaccante" },
-            { name: "Dorinel", keeper: 3, defense: 5, attack: 5, passes: 5, shot: 6, fitness: 6.5, willingness: 7, role: "centrocampista" },
-            { name: "Massimo", keeper: 4, defense: 6, attack: 7.5, passes: 7.5, shot: 7, fitness: 6.5, willingness: 7, role: "centrocampista" },
-            { name: "Tano", keeper: 5, defense: 7, attack: 7.5, passes: 7, shot: 7, fitness: 7.5, willingness: 7, role: "difensore" },
-            { name: "Nicola (Bella Li)", keeper: 3, defense: 5, attack: 5.5, passes: 5, shot: 6, fitness: 6, willingness: 7, role: "centrocampista" },
-            { name: "Michele", keeper: 3, defense: 6, attack: 6, passes: 7.5, shot: 6.5, fitness: 6.5, willingness: 6.5, role: "centrocampista" },
-            { name: "Maurizio (Mauri)", keeper: 3, defense: 5, attack: 6.5, passes: 6.5, shot: 6.5, fitness: 6, willingness: 4, role: "attaccante" },
+            { name: "STEFANO B.", keeper: 3, defense: 5, attack: 7, passes: 7, shot: 7, fitness: 6.5, willingness: 7, role: "attaccante" },
+            { name: "ALESSANDO", keeper: 5, defense: 6, attack: 8, passes: 8, shot: 9, fitness: 7.5, willingness: 7, role: "attaccante" },
+            { name: "ANDREA G.", keeper: 4, defense: 6, attack: 5, passes: 6, shot: 6, fitness: 6, willingness: 6.5, role: "centrocampista" },
+            { name: "GIORGIO", keeper: 5, defense: 6.5, attack: 6, passes: 6, shot: 6.5, fitness: 6.5, willingness: 7, role: "difensore" },
+            { name: "CARMINE", keeper: 4, defense: 6, attack: 5.5, passes: 5, shot: 6, fitness: 6, willingness: 6.5, role: "difensore" },
+            { name: "GIANMARCO", keeper: 3, defense: 5, attack: 7.5, passes: 7, shot: 7.5, fitness: 6.5, willingness: 7, role: "attaccante" },
+            { name: "DORINEL", keeper: 3, defense: 5, attack: 5, passes: 5, shot: 6, fitness: 6.5, willingness: 7, role: "centrocampista" },
+            { name: "MASSIMO", keeper: 4, defense: 6, attack: 7.5, passes: 7.5, shot: 7, fitness: 6.5, willingness: 7, role: "centrocampista" },
+            { name: "TANO", keeper: 5, defense: 7, attack: 7.5, passes: 7, shot: 7, fitness: 7.5, willingness: 7, role: "difensore" },
+            { name: "NICOLA", keeper: 3, defense: 5, attack: 5.5, passes: 5, shot: 6, fitness: 6, willingness: 7, role: "centrocampista" },
+            { name: "MICHELE", keeper: 3, defense: 6, attack: 6, passes: 7.5, shot: 6.5, fitness: 6.5, willingness: 6.5, role: "centrocampista" },
+            { name: "MAURIZIO", keeper: 3, defense: 5, attack: 6.5, passes: 6.5, shot: 6.5, fitness: 6, willingness: 4, role: "attaccante" },
         ];
 
         const roleOrder = ["difensore", "centrocampista", "attaccante"];
