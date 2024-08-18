@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore Squadre Calcetto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+            background: linear-gradient(to bottom, #e6f3ff, #e6ffea);
+        }
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        h1 {
+            text-align: center;
+            color: #0066cc;
+            font-size: 24px;
+            margin-top: 40px;
+        }
+        .players {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .player {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0052a3;
+        }
+        .teams {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        .team {
+            width: 100%;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .balance {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        #playerCount {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #0066cc;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .team h2 {
+            margin-top: 0;
+        }
+        #teamA h2 {
+            color: #0066cc;
+        }
+        #teamB h2 {
+            color: #cc0000;
+        }
+        .team ol {
+            padding-left: 20px;
+        }
+        @media (min-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .teams {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .team {
+                width: 48%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="playerCount">Giocatori selezionati: 0/10</div>
+    <div class="container">
+        <h1>⚽ Generatore Squadre Calcetto</h1>
+        <div id="players" class="players">
+            <!-- I giocatori saranno inseriti qui dinamicamente -->
+        </div>
+        <button onclick="generateTeams()">Genera Squadre</button>
+        <div class="teams">
+            <div id="teamA" class="team">
+                <h2>Squadra A</h2>
+                <ol>
+                    <!-- I giocatori della Squadra A saranno inseriti qui -->
+                </ol>
+            </div>
+            <div id="teamB" class="team">
+                <h2>Squadra B</h2>
+                <ol>
+                    <!-- I giocatori della Squadra B saranno inseriti qui -->
+                </ol>
+            </div>
+        </div>
+        <div id="balance" class="balance">
+            <!-- Il bilanciamento delle squadre sarà mostrato qui -->
+        </div>
+    </div>
+
+    <script>
+        const players = [
+            { name: "Stefano B. (Bartu)", keeper: 3, defense: 5, attack: 7, passes: 7, shot: 7, fitness: 6.5, willingness: 7 },
+            { name: "Alessandro C. (Calde)", keeper: 5, defense: 6, attack: 8, passes: 8, shot: 9, fitness: 7.5, willingness: 7 },
+            { name: "Andrea G.", keeper: 4, defense: 6, attack: 5, passes: 6, shot: 6, fitness: 6, willingness: 6.5 },
+            { name: "Giorgio", keeper: 5, defense: 6.5, attack: 6, passes: 6, shot: 6.5, fitness: 6.5, willingness: 7 },
+            { name: "Carmine", keeper: 4, defense: 6, attack: 5.5, passes: 5, shot: 6, fitness: 6, willingness: 6.5 },
+            { name: "Gianmarco (Gian)", keeper: 3, defense: 5, attack: 7.5, passes: 7, shot: 7.5, fitness: 6.5, willingness: 7 },
+            { name: "Dorinel", keeper: 3, defense: 5, attack: 5, passes: 5, shot: 6, fitness: 6.5, willingness: 7 },
+            { name: "Massimo", keeper: 4, defense: 6, attack: 7.5, passes: 7.5, shot: 7, fitness: 6.5, willingness: 7 },
+            { name: "Tano", keeper: 5, defense: 7, attack: 7.5, passes: 7, shot: 7, fitness: 7.5, willingness: 7 },
+            { name: "Nicola (Bella Li)", keeper: 3, defense: 5, attack: 5.5, passes: 5, shot: 6, fitness: 6, willingness: 7 },
+            { name: "Michele", keeper: 3, defense: 6, attack: 6, passes: 7.5, shot: 6.5, fitness: 6.5, willingness: 6.5 },
+            { name: "Maurizio (Mauri)", keeper: 3, defense: 5, attack: 6.5, passes: 6.5, shot: 6.5, fitness: 6, willingness: 4 },
+        ];
+
+        function calculatePlayerScore(player) {
+            return (
+                player.keeper * 0.5 +
+                player.defense * 1 +
+                player.attack * 1.5 +
+                player.passes * 1 +
+                player.shot * 1.5 +
+                player.fitness * 0.8 +
+                player.willingness * 0.7
+            );
+        }
+
+        function calculateTeamBalance(teamA, teamB) {
+            const calcTeamScore = (team) => 
+                team.reduce((acc, player) => acc + calculatePlayerScore(player), 0);
+
+            const teamAScore = calcTeamScore(teamA);
+            const teamBScore = calcTeamScore(teamB);
+            const totalScore = teamAScore + teamBScore;
+
+            const balance = 100 - Math.abs((teamAScore / totalScore * 100) - 50) * 2;
+            return Math.round(balance * 100) / 100;
+        }
+
+        function generateBalancedTeams(selectedPlayers) {
+            const shuffled = [...selectedPlayers].sort(() => 0.5 - Math.random());
+            const teamA = shuffled.slice(0, shuffled.length / 2);
+            const teamB = shuffled.slice(shuffled.length / 2);
+            return [teamA, teamB];
+        }
+
+        function displayPlayers() {
+            const playersContainer = document.getElementById('players');
+            players.sort((a, b) => a.name.localeCompare(b.name)).forEach((player, index) => {
+                const playerElement = document.createElement('div');
+                playerElement.className = 'player';
+                playerElement.innerHTML = `
+                    <input type="checkbox" id="player${index}" value="${player.name}" onchange="updatePlayerCount()">
+                    <label for="player${index}">${player.name}</label>
+                `;
+                playersContainer.appendChild(playerElement);
+            });
+        }
+
+        function updatePlayerCount() {
+            const selectedCount = getSelectedPlayers().length;
+            document.getElementById('playerCount').textContent = `Giocatori selezionati: ${selectedCount}/10`;
+        }
+
+        function getSelectedPlayers() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            return Array.from(checkboxes).map(checkbox => 
+                players.find(player => player.name === checkbox.value)
+            );
+        }
+
+        function displayTeam(team, containerId) {
+            const container = document.getElementById(containerId).querySelector('ol');
+            container.innerHTML = '';
+            team.forEach(player => {
+                const playerElement = document.createElement('li');
+                playerElement.textContent = player.name;
+                container.appendChild(playerElement);
+            });
+        }
+
+        function generateTeams() {
+            const selectedPlayers = getSelectedPlayers();
+            if (selectedPlayers.length !== 10) {
+                alert("Seleziona esattamente 10 giocatori!");
+                return;
+            }
+            const [teamA, teamB] = generateBalancedTeams(selectedPlayers);
+            displayTeam(teamA, 'teamA');
+            displayTeam(teamB, 'teamB');
+            const balance = calculateTeamBalance(teamA, teamB);
+            document.getElementById('balance').textContent = `Equilibrio: ${balance}%`;
+        }
+
+        // Inizializza la pagina
+        displayPlayers();
+        updatePlayerCount();
+    </script>
+</body>
+</html>
