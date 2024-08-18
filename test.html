@@ -65,6 +65,8 @@
             padding: 10px;
             border-radius: 4px;
             margin-bottom: 10px;
+            padding-left: 15px; /* Aggiunto padding a sinistra */
+            padding-right: 15px; /* Aggiunto padding a destra */
         }
         .balance {
             text-align: center;
@@ -116,7 +118,7 @@
         <div id="players" class="players">
             <!-- I giocatori saranno inseriti qui dinamicamente -->
         </div>
-        <button onclick="generateTeams()">Genera Squadre</button>
+        <button onclick="generateTeams()">🎲 Genera Squadre</button> <!-- Icona aggiunta -->
         <div class="teams">
             <div id="teamA" class="team">
                 <h2>Squadra A</h2>
@@ -143,13 +145,13 @@
             { name: "Andrea G.", keeper: 4, defense: 6, attack: 5, passes: 6, shot: 6, fitness: 6, willingness: 6.5 },
             { name: "Giorgio", keeper: 5, defense: 6.5, attack: 6, passes: 6, shot: 6.5, fitness: 6.5, willingness: 7 },
             { name: "Carmine", keeper: 4, defense: 6, attack: 5.5, passes: 5, shot: 6, fitness: 6, willingness: 6.5 },
-            { name: "Gianmarco (Gian)", keeper: 3, defense: 5, attack: 7.5, passes: 7, shot: 7.5, fitness: 6.5, willingness: 7 },
+            { name: "Gianmarco", keeper: 3, defense: 5, attack: 7.5, passes: 7, shot: 7.5, fitness: 6.5, willingness: 7 },
             { name: "Dorinel", keeper: 3, defense: 5, attack: 5, passes: 5, shot: 6, fitness: 6.5, willingness: 7 },
             { name: "Massimo", keeper: 4, defense: 6, attack: 7.5, passes: 7.5, shot: 7, fitness: 6.5, willingness: 7 },
             { name: "Tano", keeper: 5, defense: 7, attack: 7.5, passes: 7, shot: 7, fitness: 7.5, willingness: 7 },
             { name: "Nicola", keeper: 3, defense: 5, attack: 5.5, passes: 5, shot: 6, fitness: 6, willingness: 7 },
             { name: "Michele", keeper: 3, defense: 6, attack: 6, passes: 7.5, shot: 6.5, fitness: 6.5, willingness: 6.5 },
-            { name: "Maurizio (Mauri)", keeper: 3, defense: 5, attack: 6.5, passes: 6.5, shot: 6.5, fitness: 6, willingness: 4 },
+            { name: "Maurizio", keeper: 3, defense: 5, attack: 6.5, passes: 6.5, shot: 6.5, fitness: 6, willingness: 4 },
         ];
 
         function calculatePlayerScore(player) {
@@ -190,7 +192,7 @@
                 playerElement.className = 'player';
                 playerElement.innerHTML = `
                     <input type="checkbox" id="player${index}" value="${player.name}" onchange="updatePlayerCount()">
-                    <label for="player${index}">${player.name}</label>
+                                       <label for="player${index}">${player.name}</label>
                 `;
                 playersContainer.appendChild(playerElement);
             });
