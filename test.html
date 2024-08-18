@@ -60,13 +60,11 @@
             margin-top: 20px;
         }
         .team {
-            width: 100%;
+            width: 90%;
             background-color: #f0f0f0;
             padding: 10px;
             border-radius: 4px;
             margin-bottom: 10px;
-            padding-left: 15px; /* Aggiunto padding a sinistra */
-            padding-right: 15px; /* Aggiunto padding a destra */
         }
         .balance {
             text-align: center;
@@ -95,7 +93,6 @@
         }
         .team ol {
             padding-left: 20px;
-            padding-right: 20px;
         }
         @media (min-width: 768px) {
             .container {
@@ -118,7 +115,7 @@
         <div id="players" class="players">
             <!-- I giocatori saranno inseriti qui dinamicamente -->
         </div>
-        <button onclick="generateTeams()">🎲 Genera Squadre</button> <!-- Icona aggiunta -->
+        <button onclick="generateTeams()">🎲 Genera Squadre</button>
         <div class="teams">
             <div id="teamA" class="team">
                 <h2>Squadra A</h2>
@@ -192,7 +189,7 @@
                 playerElement.className = 'player';
                 playerElement.innerHTML = `
                     <input type="checkbox" id="player${index}" value="${player.name}" onchange="updatePlayerCount()">
-                                       <label for="player${index}">${player.name}</label>
+                    <label for="player${index}">${player.name}</label>
                 `;
                 playersContainer.appendChild(playerElement);
             });
